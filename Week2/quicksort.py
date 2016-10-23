@@ -26,17 +26,17 @@ def partition(A):
         A[i], A[0] = A[0], A[i]
     
         #partition the list
-        if i>0 and i<j:
-            left=A[0:i+1]
-            right=A[i+1:n]
-        elif i==0:
-            left=A[0:1]
-            right=A[1:n]
-        elif i==j:
-            left=A[0:n-1]
-            right=A[n-1:n]
-        return(left,right)
-            
+        #if i>0 and i<j:
+        #    left=A[0:i+1]
+        #    right=A[i+1:n]
+        #elif i==0:
+        #    left=A[0:1]
+        #    right=A[1:n]
+        #elif i==j:
+        #    left=A[0:n-1]
+        #    right=A[n-1:n]
+        #return(left,right)
+        return(i)    
     else:
         return(None)
         
@@ -44,20 +44,20 @@ def quicksort(A):
     n=len(A)
     #A=list(A)
     if n>=2:
-        (left,right)=partition(A)
-        lsorted=quicksort(left)
-        rsorted=quicksort(right)
-        return(np.concatenate([lsorted,rsorted]))
+        i=partition(A)
+        quicksort(A[0:i])
+        quicksort(A[i+1:])
+        return(A)
     if n==1:
         return(A)
         
 ###Test the running time of quicksort
-array_sizes=list((10**exp for exp in range(5,6)))
+array_sizes=list((10**exp for exp in range(6,7)))
 run_time_home=[]
 #run_time_python=[]
 
 for array_size in array_sizes:  
-    test=np.random.random_integers(1, 10**7,array_size)
+    test=np.random.randn(array_size)
     start_time=time.time()
     result=quicksort(test)
     run_time_home.append(time.time()-start_time)
