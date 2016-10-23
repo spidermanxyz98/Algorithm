@@ -75,6 +75,10 @@ plt.plot(array_sizes, run_time_home,"o", color='red')
 plt.xscale('log')
 #plt.yscale('log')
 
+start_time=time.time()
+np.sort(np.random.randn(10**7))
+print('time for numpy sort:',time.time()-start_time)
+
 
 #scale=list(map(lambda x:x*np.log(x), list(array_sizes)))
 #plt.figure(1)
